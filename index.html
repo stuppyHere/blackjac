@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bal" id="bal">Balace:$ <span id="ball"></span></div>
+    <div class="gamecontainer" id="gamecontainer">
+        <h1 class="logo">Blackjack</h1>
+        <div class="cards" id="cards">
+            <img class="cardp" id="card10" src="pics/10_of_clubs.png" alt="">
+            <img class="cardp" id="card11" src="pics/king_of_clubs.png" alt="">
+            <img class="cardp" id="card2" src="pics/2_of_clubs.png" alt="">
+            <img class="cardp" id="card3" src="pics/3_of_clubs.png" alt="">
+            <img class="cardp" id="card4" src="pics/4_of_clubs.png" alt="">
+            <img class="cardp" id="card5" src="pics/5_of_clubs.png" alt="">
+            <img class="cardp" id="card6" src="pics/6_of_clubs.png" alt="">
+            <img class="cardp" id="card7" src="pics/7_of_clubs.png" alt="">
+            <img class="cardp" id="card8" src="pics/8_of_clubs.png" alt="">
+            <img class="cardp" id="card9" src="pics/9_of_clubs.png" alt="">
+            <img class="cardp" id="card1" src="pics/ace_of_clubs.png" alt="">
+        </div>
+        <p class="message" id="message"></p>
+        <p id="sum" class="sum">sum:</p>
+        <div class="buttons">
+            <button onclick="start()" id="start">Start</button>
+            <button onclick="pull()" id="pull">Pull</button>
+            <button onclick="nop()" id="nop">Nope</button>
+            <button onclick="start()" id="re">Restart</button>
+            <button onclick="home()" id="home">Home</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
