@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payment</title>
+    <link rel="icon" href="pics/logo.png">
+    <link rel="stylesheet" href="pay.css">
+  </head>
+  <body>
+    <div class="modal">
+      <h2>Add Balance</h2>
+      <p class="sub">Top up your chips to keep playing</p>
+
+      <div class="amount-options">
+        <a href="pay500.html"> <button>$500</button> </a>
+        <a href="pay1000.html"><button>$1000</button></a>
+        <a href="pay1500.html"><button class="selected">$1,500</button></a>
+      </div>
+
+      <label for="card">Card Number</label>
+      <input required type="text" id="card" placeholder="1234 5678 9012 3456" />
+
+      <div class="row">
+        <div>
+          <label for="exp">Expiry</label>
+          <input required type="text" id="exp" placeholder="MM/YY" />
+        </div>
+        <div>
+          <label for="cvv">CVV</label>
+          <input required type="text" id="cvv" placeholder="123" />
+        </div>
+      </div>
+
+      <label for="name">Name on Card</label>
+      <input required type="text" id="name" placeholder="John Doe" />
+
+      <button class="pay-btn">Pay Now</button>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

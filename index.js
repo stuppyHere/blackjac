@@ -1,7 +1,7 @@
 let a = []
 let num 
 let sum = 0;
-let balance = 10000;
+let balance = 0;
 document.getElementById("ball").innerHTML = balance;
 document.getElementById("message").innerText = "Wanna play a round?"
 function start() {
@@ -11,6 +11,7 @@ function start() {
     document.getElementById("re").style.display = "none";
     document.getElementById("pull").style.display = "none";
     document.getElementById("sum").style.display = "none";
+    document.getElementById("pay").style.display = "inline-block";
      for(let cardshii=1 ; cardshii <=11 ; cardshii++){
     document.getElementById(`card${cardshii}`).style.display="none"
     }
