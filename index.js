@@ -1,7 +1,8 @@
 let a = []
 let num 
 let sum = 0;
-let balance = 0;
+let balance = 1000;
+let money = 0;
 document.getElementById("ball").innerHTML = balance;
 document.getElementById("message").innerText = "Wanna play a round?"
 function start() {
@@ -37,7 +38,7 @@ function start() {
     document.getElementById("nop").style.display = "inline-block";
     document.getElementById("message").innerHTML = "wanna pull cards?";
   } else if (sum === 21) {
-    balance += 10000;
+    balance += 100;
     document.getElementById("ball").innerHTML = "balance:$" + balance;
     document.getElementById("message").innerHTML = "Damn you got lucky huh";
     document.getElementById("pull").style.display = "none";
@@ -49,7 +50,7 @@ function start() {
     document.getElementById("pull").style.display = "none";
     document.getElementById("nop").style.display = "none";
     document.getElementById("re").style.display = "inline-block";
-    balance -= 5000;
+    balance -= 100;
     document.getElementById("message").innerHTML = "try again may be u will win";
     document.getElementById("ball").innerHTML = "balance:$" + balance;
   }
@@ -75,7 +76,7 @@ function pickNum(){
     document.getElementById("nop").style.display = "inline-block";
     document.getElementById("message").innerHTML = "wanna pull cards?";
   } else if (sum === 21) {
-    balance += 10000;
+    balance += 100;
     document.getElementById("ball").innerHTML = "balance:$" + balance;
     document.getElementById("message").innerHTML = "Damn you got lucky huh";
      document.getElementById("pull").style.display = "none";
@@ -87,7 +88,7 @@ function pickNum(){
     document.getElementById("nop").style.display = "none";
     document.getElementById("re").style.display = "inline-block";
     document.getElementById("home").style.display = "inline-block";
-    balance -= 5000;
+    balance -= 100;
     document.getElementById("message").innerHTML = "try again may be u will win";
     document.getElementById("ball").innerHTML = "balance:$" + balance;
   }
@@ -104,6 +105,10 @@ function does(){
 } 
 
 function nop(){
+      balance -= 100;
+        document.getElementById("ball").innerHTML = balance;
+
+
   home()
 }
 
@@ -118,4 +123,21 @@ function home(){
   document.getElementById("nop").style.display = "none";
   document.getElementById("re").style.display = "none";
   document.getElementById("home").style.display = "none";
+}
+
+function five(){
+  money = 500;
+}
+function ten(){
+  money= 1000;
+}
+function one(){
+  money = 1500;
+}
+
+function pay(){
+  balance+= pay;
+  money = 0;
+  document.getElementById("ball").innerHTML = balance;
+  
 }
