@@ -1,3 +1,5 @@
+/* first js for this game after dat got replced by app.js */
+
 let a = []
 let num 
 let sum = 0;
@@ -22,11 +24,11 @@ function start() {
   a[0] = pickNum();
   a[1] = pickNum();
   sum = a[0] + a[1];
-  for(let cardshii=1 ; cardshii <=11 ; cardshii++){
+  /* for(let cardshii=1 ; cardshii <=11 ; cardshii++){
     document.getElementById(`card${cardshii}`).style.display="none"
-  }
+  } */
   
-  does()
+  load()
   document.getElementById("sum").style.display= "block"
   document.getElementById("sum").innerText = "sum: " + sum;
 
@@ -58,15 +60,17 @@ function start() {
  
 }
 
-function pickNum(){
-  return Math.floor(Math.random()*11)+1
+function pickNum() {
+  return Math.floor(Math.random() * 11) + 1;
 }
+
+
 
  function pull(){
   num +=1;
   a[num] = pickNum()
   sum += a[num];
-  does()
+  load()
   document.getElementById("sum").innerText = "sum: " + sum;
   if (sum <= 20) {
     document.getElementById("start").style.display = "none";
@@ -94,7 +98,7 @@ function pickNum(){
   }
 } 
 
-function does(){
+/* function does(){
   for(let shii of a){
     let cardElement = document.getElementById(`card${shii}`);
     if(cardElement){
@@ -102,7 +106,7 @@ function does(){
     }
     
   }
-} 
+}  */
 
 function nop(){
       balance -= 100;
@@ -113,9 +117,9 @@ function nop(){
 }
 
 function home(){
-  for(let cardshii=1 ; cardshii <=11 ; cardshii++){
+ /*  for(let cardshii=1 ; cardshii <=11 ; cardshii++){
     document.getElementById(`card${cardshii}`).style.display="none"
-  }
+  } */
   document.getElementById("message").innerText = "Wanna play a round?"
   document.getElementById("sum").style.display= "none"
   document.getElementById("start").style.display = "inline-block";
@@ -123,6 +127,7 @@ function home(){
   document.getElementById("nop").style.display = "none";
   document.getElementById("re").style.display = "none";
   document.getElementById("home").style.display = "none";
+  load()
 }
 
 function five(){
@@ -136,8 +141,19 @@ function one(){
 }
 
 function pay(){
-  balance+= pay;
+  balance += money;
   money = 0;
   document.getElementById("ball").innerHTML = balance;
   
+}
+
+function load(){
+  let cardLoader = ""
+  const cardContainer = document.querySelector("#cards")
+  cardContainer.innerHTML= ""
+  for(let i of a){
+    cardLoader += `<img src="pics/${i}_of_clubs.png" class= "cardp">`
+  }
+  cardContainer.innerHTML = cardLoader
+  a=[]
 }
