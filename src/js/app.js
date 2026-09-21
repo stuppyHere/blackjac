@@ -170,3 +170,5 @@ home.addEventListener("click", () => {
   landing()
 });
 
+/* uhh dynamic class giver */
+
