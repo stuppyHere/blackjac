@@ -12,9 +12,9 @@
       <p class="sub">Top up your chips to keep playing</p>
 
       <div class="amount-options">
-        <a href="pay500.html"> <button>$500</button> </a>
-        <a href="pay1000.html"><button>$1000</button></a>
-        <a href="pay1500.html"><button>$1,500</button></a>
+        <button class="top-up" id="500">$500</button>
+        <button class="top-up" id="1000">$1,000</button>
+        <button class="top-up" id="1500">$1,500</button>
       </div>
 
       <label for="card">Card Number</label>
@@ -34,10 +34,9 @@
       <label for="name">Name on Card</label>
       <input required type="text" id="name" placeholder="John Doe" />
 
-      <a href="index.html"
-        ><button onclick="#" class="pay-btn">Pay Now</button></a
+      <a href="index.html"><button onclick="#" class="pay-btn" id="pay-btn">Pay Now</button></a
       >
     </div>
-    <script src="src/js/app.js"></script>
+    <script src="src/js/pay.js"></script>
   </body>
 </html>

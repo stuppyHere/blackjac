@@ -2,9 +2,15 @@
 let landing = () => {
   cardContainer.style.display = "none";
   start.style.display = "inline-block";
-  message = "Wanna play a round?"
-  messageContainer.textContent = message
-}
+  pull.style.display = "none";
+  nope.style.display = "none";
+  reset.style.display = "none";
+  home.style.display = "none";
+  addBal.style.display = "none";
+
+  message = "Wanna play a round?";
+  messageContainer.textContent = message;
+};
 
 function pickNum() {
   return Math.floor(Math.random() * 11) + 1;
@@ -18,17 +24,26 @@ let sum = (array) => {
   return sum;
 };
 
+let balLoader = () => {
+  balContainer.textContent = balance
+}
+
+let balUpdate = (change) => {
+  balance += change;
+  localStorage.setItem("balance", balance);
+};
 
 let check = () => {
   if (mySum < 21 && dealerSum <= 21) {
     message = "Well wanna pull another card?";
     pull.style.display = "inline-block";
     nope.style.display = "inline-block";
-    messageContainer.textContent = message
+    messageContainer.textContent = message;
   } else if (mySum === 21 && dealerSum === 21) {
     if (dealer.length < my.length) {
       message = speMessage;
       speMessage = "";
+      balUpdate(-100);
     } else {
       message = "Draw, Nobody looses money";
       reset.style.display = "inline-block";
@@ -37,28 +52,35 @@ let check = () => {
     nope.style.display = "none";
     reset.style.display = "inline-block";
     home.style.display = "inline-block";
-    messageContainer.textContent = message
+    messageContainer.textContent = message;
+    balLoader()
   } else if (mySum === 21) {
     message = "Woah, Feeling lucky again?";
     pull.style.display = "none";
     nope.style.display = "none";
     reset.style.display = "inline-block";
     home.style.display = "inline-block";
-    messageContainer.textContent = message
+    messageContainer.textContent = message;
+    balUpdate(100);
+    balLoader()
   } else if (dealerSum > 21) {
     message = "Woah , Dealer's luck suck this time wanna bet again?";
     pull.style.display = "none";
     nope.style.display = "none";
     reset.style.display = "inline-block";
     home.style.display = "inline-block";
-    messageContainer.textContent = message
+    messageContainer.textContent = message;
+    balUpdate(100);
+    balLoader()
   } else if (mySum > 21) {
     pull.style.display = "none";
     nope.style.display = "none";
     reset.style.display = "inline-block";
     home.style.display = "inline-block";
     message = "Blehhh, Your luck is not lucking currently.. wanna bet again?";
-    messageContainer.textContent = message
+    messageContainer.textContent = message;
+    balUpdate(-100);
+    balLoader()
   }
 };
 
@@ -66,20 +88,20 @@ let cardLoader = (array, container) => {
   let cards = "";
   container.innerHTML = "";
   for (let i of array) {
-    cards += `<img class="cardp" src="pics/${i}_of_clubs.png">`;
+    cards += `<img class="cardp" src="src/pics/${i}_of_clubs.png">`;
   }
 
   container.innerHTML = cards;
 };
 
-
 let play = () => {
   my = [];
   dealer = [];
-  myNum =2 
-  dealerNum =2 
+  myNum = 2;
+  dealerNum = 2;
   cardLoader(my, myContainer);
   cardLoader(dealer, dealerContainer);
+  balLoader()
   if (balance < 100) {
     message = "You are Broke";
     messageContainer.textContent = message;
@@ -89,6 +111,7 @@ let play = () => {
     start.style.display = "none";
     reset.style.display = "none";
     nope.style.display = "none";
+    pull.style.display = "none";
     addBal.style.display = "none";
     reset.style.display = "none";
     home.style.display = "none";
@@ -115,7 +138,16 @@ let message = "";
 let speMessage = "";
 let myNum = 2;
 let dealerNum = 2;
-let balance = localStorage.getItem("balance");
+let balance = 0;
+if (Number(localStorage.getItem("balance"))) {
+  balance = Number(localStorage.getItem("balance"));
+  console.log(balance);
+} else {
+  balance = 1000;
+  console.log(balance);
+  localStorage.setItem("balance", balance);
+}
+
 const start = document.querySelector("#start");
 const pull = document.querySelector("#pull");
 const nope = document.querySelector("#nop");
@@ -126,9 +158,11 @@ const home = document.querySelector("#home");
 const cardContainer = document.querySelector("#cardContainer");
 const myContainer = document.querySelector("#myCards");
 const dealerContainer = document.querySelector("#dealerCards");
+const balContainer = document.querySelector("#ball")
 
-landing()
- 
+landing();
+balLoader()
+
 start.addEventListener("click", () => {
   play();
 });
@@ -152,23 +186,33 @@ pull.addEventListener("click", () => {
 nope.addEventListener("click", () => {
   if (21 - mySum < 21 - dealerSum) {
     message = "Woah, Luck is crazy rn feeling lucky again?";
+    balUpdate(100);
   } else if (dealer.length < my.length && dealerSum === 21) {
     message = speMessage;
     speMessage = "";
+    balUpdate(100);
+  } else if (mySum === dealerSum) {
+    message = "Draw, Nobody looses the money";
+  } else if (21 - mySum > 21 - dealerSum) {
+    message = "Blehhh, Your luck is not lucking currently.. wanna bet again?";
+    balUpdate(-100);
   }
-  messageContainer.textContent = message
+
+  messageContainer.textContent = message;
+  start.style.display = "none";
+  reset.style.display = "none";
+  nope.style.display = "none";
+  pull.style.display = "none";
+  addBal.style.display = "none";
+  reset.style.display = "inline-block";
+  home.style.display = "inline-block";
+  balLoader();
 });
-
-
-
 
 reset.addEventListener("click", () => {
   play();
 });
 
 home.addEventListener("click", () => {
-  landing()
+  landing();
 });
-
-/* uhh dynamic class giver */
-
